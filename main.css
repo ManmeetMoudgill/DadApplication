@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.hero{
+    height: 93vh;
+   /*  background: linear-gradient(#e66465, #9198e5); */
+    background:linear-gradient(45deg,#59c173,#a17fe0,#5d26c1);
+}
+
+.alert-heading {
+    color: inherit;
+    margin-top: 10rem !important;
+}
+.para{
+    font-size: 1.2rem !important;
+}

@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
     $hours = ($time2 - $time1)/3600; 
     $workingHours= floor($hours) . ':' . (($hours-floor($hours))* 60);
-    echo  var_dump($workingHours)."<br>"; 
+    echo var_dump($workingHours);
     error_reporting(0);
 
     switch ($break_time) {
@@ -28,18 +28,17 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             
             break;    
         default:
-        header('Location:./index.php?pausaDurataFailed=true');
+             header('Location:./index.php?pausaDurataFailed=true');
       }
-      echo $workingHours."<br>";
-/* 
-      $sql="INSERT INTO `schedules`(`Date`, `Starting_Time`, `Finsihing_Time`, `Payment_Per_Day`, `Pause_Minutes`, `Id_Employe`) VALUES ('$date','$starting_time','$finishing_time','$payment_per_day','$break_time','$idClient')";
+     
+    /*   $sql="INSERT INTO `schedules`(`Date`, `Starting_Time`, `Finsihing_Time`, `Payment_Per_Day`, `Pause_Minutes`, `Working_hourDay`, `Id_Employe`) VALUES ('$date','$starting_time','$finishing_time','$payment_per_day','$break_time','$workingHours','$idClient')";
       $result=mysqli_query($con,$sql);
       if($result){
         echo 'Data Inserted Successfully';
         header('Location:./index.php?pausaDurataFailed=true'); 
       }else{
           echo 'Error occured';
-      } */
+      }  */
 
 }
 

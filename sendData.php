@@ -19,11 +19,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     switch ($break_time) {
         case $break_time==15:
             $workingHours=$workingHours-0.25;
-            ;
             break;
         case $break_time==30:
             $workingHours=$workingHours-0.50;
-            
             break;
         case $break_time==60:
             $workingHours=$workingHours-1.0;

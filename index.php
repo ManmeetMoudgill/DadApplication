@@ -23,9 +23,9 @@
 
 <?php
 include './header.php';
-if(isset($_GET['pausaDurataFailed']) && $_GET['pausaDurataFailed'] == true){
+if(isset($_GET['dataSucess']) && $_GET['dataSucess'] == true){
     echo '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-      <strong>Messaggio</strong>La Pausa Potrebbe Durare solo 30 minuti o 60 minuti.
+      <strong>Messaggio</strong>Your data has been submitted sucessfully(i tuoi dati sono stati inviati con successo)
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>';
   }
@@ -49,7 +49,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
 
 <?php
+
+error_reporting(0);
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
+$idClient=$_SESSION['IdClient'];
 echo '<div class="container-fluid hero my-auto">
 <form  action= "./sendData.php" method="post">
     <div class="mx-auto form-group w-50">
@@ -72,15 +75,16 @@ echo '<div class="container-fluid hero my-auto">
         <input type="text" id="time" placeholder=" Type only Minutes(Minuti)"name="break_time" class="form-control -w-25" />
     </div>
     <div class="mx-auto form-group w-50">
-        <label for="exampleInputpause" class="form-label">Guadagno Giornaliero 💰 
+        <label for="exampleInputpause" class="form-label">Ore Giornaliere(Working hours)⌛ 
         </label>
-        <input type="numer" min="00:00" max="01:00" name="payment_per_day" class="form-control -w-25" />
+        <input type="numer" name="Working_hour" class="form-control -w-25" />
     </div>
     <div class="text-center my-3">
         <button type="submit" name="submit"class="btn btn-primary">Invia</button>
-    </div>
-</form>
-</div>';
+        <a class="text-light" href="./showInfo.php?idClient='.$_SESSION['IdClient'].'"><button type="button" class="btn btn-primary">Mostra Dati</button></a>
+        </div>
+        </form>
+        </div>';
 }
 else{
     echo'

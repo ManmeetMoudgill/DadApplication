@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $_SESSION['username']=$dataFromDB['name'] . $dataFromDB['surname'];
             $_SESSION['loggedIn']=true;
             $_SESSION['IdClient']=$idClient;
-            header('Location:./index.php?logIN=true');
+            header('Location:./index.php?logIN=true&idClient='.$idClient);
         }else{
         
            header('Location:./index.php?passwordWrongDB=true');

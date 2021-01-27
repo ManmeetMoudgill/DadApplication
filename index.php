@@ -16,7 +16,7 @@
 
 
   ?>
-    <title></title>
+    <title>Employee Schedule Application</title>
 </head>
 
 <body>

@@ -11,12 +11,12 @@
       <div class="modal-body">
         <form action="./loginHandler.php" method="POST">
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
+        <label for="exampleInputEmail1">Email address</label><span class="error">
         <input type="email" class="form-control"  name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
         
     </div>
     <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
+        <label for="exampleInputPassword1">Password</label><span class="error">
         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
     </div>
     <button type="submit" class="btn btn-primary my-1">Login</button>

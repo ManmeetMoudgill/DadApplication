@@ -1,8 +1,20 @@
 <?php
+session_start();
 include './db.php';
+$emailErr = $password1Err= "";
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $email=$_POST['email'];
-    $password1=$_POST['password'];
+    if(empty($_POST['email'])){
+        echo $emailErr="Email is Required";
+    }else{
+        $email=$_POST['email'];
+
+    }
+    if(empty($_POST['password'])){
+        echo $password1Err="Password is Required";
+    }else{
+     $password1=$_POST['password'];
+    }
+    
 
     
     /* check whether the email is there is database */
@@ -15,7 +27,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $dataFromDB=mysqli_fetch_assoc($result1); 
         $idClient=$dataFromDB['idEmployee'];
         if(password_verify($password1,$dataFromDB['password'])){
-            session_start();
+          
             $_SESSION['username']=$dataFromDB['name'] . $dataFromDB['surname'];
             $_SESSION['loggedIn']=true;
             $_SESSION['IdClient']=$idClient;

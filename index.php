@@ -22,30 +22,52 @@
 <body>
 
 <?php
+
 include './header.php';
-if(isset($_GET['dataSucess']) && $_GET['dataSucess'] == true){
-    echo '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
-      <strong>Messaggio</strong>Your data has been submitted sucessfully(i tuoi dati sono stati inviati con successo)
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>';
-  }
-?>
-<!-- php code here -->
-<!-- <?php
+include './db.php';
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
-
-    $name=$_POST['name'];
-    $surname=$_POST['surname'];
-    $date=$_POST['date'];
-    $starting_time=$_POST['starting_time'];
-    $finishing_time=$_POST['finishing_time'];
-    $break_time=$_POST['break_time'];
-
-   
+  if($_SERVER['REQUEST_METHOD']=='POST'){
+  
+      $date=test_input($_POST['date']);
+      $starting_time=test_input($_POST['starting_time']);
+      $finishing_time=test_input($_POST['finishing_time']);
+      $break_time=test_input($_POST['break_time']);
+      $Working_hour=test_input($_POST['Working_hour']);
+      $idClient=$_SESSION['IdClient'];
+  
+ /*    error_reporting(0); */
+ if($date=="" && $starting_time=="" && $finishing_time=="" && $break_time=="" && $Working_hour==""){
+    echo '<div class="alert my-0 alert-danger alert-dismissible fade show" role="alert">
+    <strong>Messaggio</strong>Your can not leave the fields blank(Non puoi lasciare i campi vuoti)
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';  
+ }else{
+    $sql="INSERT INTO `schedules`(`Date`, `Starting_Time`, `Finsihing_Time`, `Pause_Minutes`, `Working_hourDay`, `Id_Employe`) VALUES ('$date','$starting_time','$finishing_time','$break_time','$Working_hour','$idClient')";
+      $result=mysqli_query($con,$sql);
+      if($result){
+        echo 'Data Inserted Successfully';
+        header('Location:./index.php?dataSucess=true'); 
+      }else{
+          echo 'Error occured';
+      }
+    }
 
 }
-?> -->
+else if(isset($_GET['dataSucess']) && $_GET['dataSucess'] == true){
+    echo '<div class="alert my-0 alert-success alert-dismissible fade show" role="alert">
+    <strong>Messaggio</strong>Your data has been submitted sucessfully(i tuoi dati sono stati inviati con successo)
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+}
+function test_input($data) {
+  $data = trim($data);
+/*   $data = stripslashes($data); */
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+?>
+
 
 
 <?php
@@ -54,7 +76,7 @@ error_reporting(0);
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){
 $idClient=$_SESSION['IdClient'];
 echo '<div class="container-fluid hero my-auto">
-<form  action= "./sendData.php" method="post">
+<form  action= "" method="post">
     <div class="mx-auto form-group w-50">
         <label for="exampleInputdate" class="form-label">Data</label>
         <input type="date" name="date" class="form-control -w-25"/>
